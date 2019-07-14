@@ -3,6 +3,7 @@ import SHOP_DATA from './shop.data'
 
 import PreviewCollection from '../../components/preview-collection/preview-collection.component'
 
+
 class Shop extends Component {
     constructor(props) {
         super(props)
