@@ -8,7 +8,7 @@ import { Switch, Route } from 'react-router-dom'
 
 import Header from "./components/header/header.component";
 
-import { auth } from './components/firebase/firebase.utils'
+import { auth, createUserProfileDocument } from './components/firebase/firebase.utils'
 
 
 class App extends Component {
@@ -23,11 +23,29 @@ class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user });
-      console.log('user', user)
-      console.log('displayName', user.displayName)
-      console.log('email', user.email)
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth)
+        console.log('userRef', userRef)
+        userRef.onSnapshot(snapShot => {
+          console.log('snapShot.data()', snapShot.data())
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          },
+            () => { console.log('this.state', this.state) }
+          );
+        })
+      } else {
+        this.setState({ currentUser: userAuth });
+      }
+      //this.setState({ currentUser: user }); //1st
+      // createUserProfileDocument(user) //2nd
+      // console.log('user', user)  //1
+      // console.log('displayName', user.displayName) //1
+      // console.log('email', user.email) //1 
     })
   }
 
