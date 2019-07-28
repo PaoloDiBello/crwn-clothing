@@ -21,7 +21,7 @@ class Shop extends Component {
 
                     {
                         collections.map(({ id, ...otherCollectionProps }) => {
-                            return < PreviewCollection id={id} {...otherCollectionProps} />
+                            return < PreviewCollection key={id} id={id} {...otherCollectionProps} />
                         })
                     }
                 </h1>
