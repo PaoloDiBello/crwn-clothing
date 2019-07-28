@@ -3,7 +3,6 @@ import './collection-item.styles.scss';
 import CustomButton from '../custom-button/custom-button.component'
 import { connect } from 'react-redux'
 import { addItem } from '../../redux/cart/cart.actions'
-import { deleteItem } from '../../redux/cart/cart.actions'
 
 const CollectionItem = ({ item, addItem }) => {
     const { name, price, imageUrl } = item;
@@ -27,7 +26,6 @@ const CollectionItem = ({ item, addItem }) => {
 
 const mapDispatchToProps = dispatch => ({
     addItem: item => dispatch(addItem(item)),
-    deleteItem: item => dispatch(deleteItem(item))
 })
 
 
