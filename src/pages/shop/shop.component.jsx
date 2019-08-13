@@ -6,7 +6,7 @@ import { Route } from 'react-router'
 
 import { firestore, convertCollectionsSnapshotToMap } from '../../firebase/firebase.utils';
 
-import { updateCollections } from '../../redux/shop/shop.types'
+import { updateCollections } from '../../redux/shop/shop.actions'
 
 import { connect } from 'react-redux'
 
