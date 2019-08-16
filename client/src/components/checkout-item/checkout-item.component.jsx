@@ -10,8 +10,8 @@ import {
     RemoveButtonContainer
 } from './checkout-item.styles';
 
-const CheckoutItem = ({ item, clearItem, addItem, removeItem }) => {
-    const { name, quantity, price, imageUrl } = item;
+const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
+    const { name, quantity, price, imageUrl } = cartItem;
 
     return (
         <CheckoutItemContainer>
@@ -24,14 +24,14 @@ const CheckoutItem = ({ item, clearItem, addItem, removeItem }) => {
             </TextContainer>
 
             <QuantityContainer>
-                <div onClick={() => removeItem(item)}>&#10094;</div>
+                <div onClick={() => removeItem(cartItem)}>&#10094;</div>
                 <span>{quantity}</span>
-                <div onClick={() => addItem(item)}>&#10095;</div>
+                <div onClick={() => addItem(cartItem)}>&#10095;</div>
             </QuantityContainer>
 
             <TextContainer>{price}</TextContainer>
 
-            <RemoveButtonContainer onClick={() => clearItem(item)}>
+            <RemoveButtonContainer onClick={() => clearItem(cartItem)}>
                 &#10005;
             </RemoveButtonContainer>
 
